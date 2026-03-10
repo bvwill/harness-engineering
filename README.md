@@ -79,6 +79,12 @@ Each dimension is scored 1-5. Most projects score 2-3 on first review. That's no
 | Level 2 | Team-ready | Solid docs, CI constraints, validation. Reliable enough to share. |
 | Level 3 | Systematic | Custom enforcement, feedback loops, performance tracking. Self-improving. |
 
+## Example Output
+
+See [`examples/example-scorecard.md`](examples/example-scorecard.md) for a complete review of a PM-built coaching summary tool. It scores Level 2 (Team-Ready) with specific strengths, gaps, and a prioritized improvement plan.
+
+Most projects score Level 2 on first review. That is normal and useful. The value is in the specific gaps and the prioritized fix list, not the number.
+
 ## Why a Scorecard Instead of Pass/Fail
 
 Harness maturity isn't binary. A project can have excellent context engineering but no validation. A scorecard shows you exactly where to invest your next hour of improvement, rather than just telling you "needs work."
