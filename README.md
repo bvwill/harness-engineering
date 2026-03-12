@@ -81,9 +81,28 @@ Each dimension is scored 1-5. Most projects score 2-3 on first review. That's no
 
 ## Example Output
 
-See [`examples/example-scorecard.md`](examples/example-scorecard.md) for a complete review of a PM-built coaching summary tool. It scores Level 2 (Team-Ready) with specific strengths, gaps, and a prioritized improvement plan.
+The skill adapts its depth to your project's maturity:
 
-Most projects score Level 2 on first review. That is normal and useful. The value is in the specific gaps and the prioritized fix list, not the number.
+- **Tier 1 (Foundations):** ~1 page. See [`examples/tier-1-review.md`](examples/tier-1-review.md) — a solo CLI tool with sparse agent configuration.
+- **Tier 2 (Team-ready):** ~2-3 pages. See [`examples/tier-2-review.md`](examples/tier-2-review.md) — a productivity system with validation scripts and feedback mechanisms.
+- **Tier 3 (Systematic):** ~4-5 pages. See [`examples/tier-3-review.md`](examples/tier-3-review.md) — a multi-agent skill library with automated enforcement and closed feedback loops.
+
+Most projects score Tier 1 or 2 on first review. That is normal and useful. The value is in the specific gaps and the prioritized fix list, not the number.
+
+## Repo Structure
+
+```
+prompt.md                      # Skill prompt (the evaluator instructions)
+rubric.md                      # Scoring criteria — the authority on what each score means
+discovery-checklist.md         # 15-point structured discovery process
+reference-benchmarks.md        # Calibration benchmarks for scoring consistency
+self-verification.md           # Pre-presentation checklist with anti-inflation guardrails
+examples/
+  tier-1-review.md             # Example: compact Foundations review
+  tier-2-review.md             # Example: standard Team-ready review
+  tier-3-review.md             # Example: comprehensive Systematic review
+README.md                      # This file
+```
 
 ## Why a Scorecard Instead of Pass/Fail
 
