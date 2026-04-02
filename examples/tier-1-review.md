@@ -1,6 +1,6 @@
 # Example: Tier 1 Review Output
 
-> This is an annotated example of what a Tier 1 (Foundations) harness review looks like. Use this as a reference for the expected depth, format, and quality of a Tier 1 review. Tier 1 reviews are compact (~1 page) with 5 core scores and 3 focused improvements.
+> This is an annotated example of what a Tier 1 (Foundations) harness review looks like. Use this as a reference for the expected depth, format, and quality of a Tier 1 review. Tier 1 reviews are compact (~1 page) with 6 core scores and 3 focused improvements.
 
 > **Project:** taskr (Python CLI task management tool, solo developer side project)
 > **Tier detected:** Tier 1 (sparse CLAUDE.md, no skills/prompts, no validation, no hooks, solo contributor)

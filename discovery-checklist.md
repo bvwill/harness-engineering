@@ -2,6 +2,8 @@
 
 Run through each check in order. Record what you find. This standardizes discovery across projects and ensures nothing gets missed.
 
+Checks marked with **[A]** can be pre-populated by running `harness-check.sh`. The remaining checks require evaluator judgment.
+
 ## How to Use
 
 For each check: record Found/Not Found, the file path or location, and a one-line quality note. Complete all 16 checks before assigning a tier or scoring any dimension.
@@ -10,7 +12,7 @@ For each check: record Found/Not Found, the file path or location, and a one-lin
 
 ## Checks
 
-### 1. Root Agent Configuration
+### 1. Root Agent Configuration [A]
 **Look for:** `CLAUDE.md`, `AGENTS.md`, `.cursorrules`, `.claude/` directory, `.claude/commands/`
 **Record:** Which files exist, approximate line count, last modified date (from git log)
 **Quality signals:** Does it cover project overview? Directory structure? Commands? Conventions?
@@ -20,22 +22,22 @@ For each check: record Found/Not Found, the file path or location, and a one-lin
 **Record:** What build/test/lint commands are defined
 **Quality signals:** Are there lint, test, and build scripts? Is there a dev vs prod distinction?
 
-### 3. Git Hooks
+### 3. Git Hooks [A]
 **Look for:** `.git/hooks/` (non-sample files), `.husky/`, `lint-staged` config in package.json, `pre-commit-config.yaml`
 **Record:** Which hooks are active, what they run
 **Quality signals:** Do hooks enforce validation before commit? Are they actually installed (not just sample files)?
 
-### 4. CI/CD Configuration
+### 4. CI/CD Configuration [A]
 **Look for:** `.github/workflows/`, `.gitlab-ci.yml`, `Jenkinsfile`, `circle.yml`, `.buildkite/`
 **Record:** What pipelines exist, what they check (lint, test, build, deploy)
 **Quality signals:** Do pipelines run on PR? Do they block merge on failure?
 
-### 5. Skills and Prompts
+### 5. Skills and Prompts [A]
 **Look for:** `src/skills/`, `prompts/`, `agents/`, `.claude/agents/`, any directory containing `.md` files that look like agent instructions
 **Record:** Number of skills, which have supporting files (rubrics, examples, voice guides)
 **Quality signals:** Do skills have more than just a prompt? Are there rubrics, examples, self-verification?
 
-### 6. Validation Scripts
+### 6. Validation Scripts [A]
 **Look for:** `scripts/validate-*`, `scripts/check-*`, any script that validates output format or content
 **Record:** What they validate, how they're triggered (manual, hook, CI)
 **Quality signals:** Do they run automatically or require manual invocation?
@@ -65,7 +67,7 @@ For each check: record Found/Not Found, the file path or location, and a one-lin
 **Record:** Whether critical paths have designated reviewers, whether branch protection is configured
 **Quality signals:** Are there different access tiers? Is review required for merges?
 
-### 12. Secrets and Security Patterns
+### 12. Secrets and Security Patterns [A]
 **Look for:** `.gitignore` entries for `.env`, `credentials`, `secrets`; pre-commit secret scanning config; vault config
 **Record:** How secrets are managed (env vars, vault, hardcoded)
 **Quality signals:** Are secrets excluded from version control? Is there automated secret scanning?
@@ -75,7 +77,7 @@ For each check: record Found/Not Found, the file path or location, and a one-lin
 **Record:** What MCP servers exist, what capabilities they provide
 **Quality signals:** Are MCP servers documented? Do they have write restrictions where appropriate?
 
-### 14. Slash Commands and Entry Points
+### 14. Slash Commands and Entry Points [A]
 **Look for:** `.claude/commands/`, CLI scripts, Makefiles with common workflows
 **Record:** Number and purpose of slash commands or entry points
 **Quality signals:** Do common workflows have ergonomic entry points? Are arguments documented?
@@ -85,7 +87,7 @@ For each check: record Found/Not Found, the file path or location, and a one-lin
 **Record:** Number of contributors, frequency of commits, whether commits show agent-generated patterns (e.g., "Co-Authored-By: Claude")
 **Quality signals:** How active is the repo? Is there evidence of multi-contributor workflows?
 
-### 16. Production Monitoring and Observability
+### 16. Production Monitoring and Observability [A]
 **Look for:** Logging config, monitoring dashboards, alerting rules, quality tracking scripts or logs, output acceptance/rejection records, cost/token tracking, error rate tracking, performance metrics files
 **Record:** What monitoring exists, what quality signals are tracked, whether alerts are configured, whether production data flows back into the harness
 **Quality signals:** Can the team detect when agent output quality degrades without manual spot-checking? Is there a feedback path from production metrics back to prompt refinement?
