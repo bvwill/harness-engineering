@@ -2,6 +2,8 @@
 
 Use these benchmarks to calibrate your scoring. When in doubt about a score, ask: "Is this project closer to the Tier 2 or Tier 3 benchmark on this dimension?"
 
+> **Framework version note:** Benchmarks were updated 2026-04-01 to include the 6th dimension (Operational Monitoring). Reviews conducted before this date used a 5-dimension framework. When comparing across framework versions, note the dimension count difference.
+
 ---
 
 ## Tier 2 Benchmark: bv-workdesk
@@ -113,5 +115,3 @@ A project has automated enforcement, multi-agent coordination, continuous feedba
 | 4.5-5.0 | Exceptional harness. Self-correcting, multi-agent, fully instrumented. | Very rare. Reserve for systems that demonstrably improve themselves. |
 
 If a project you are reviewing scores above 3.5, verify each 4+ dimension against these benchmarks. If it scores above 4.5, something may be wrong with your evaluation.
-
-> **Framework version note:** Benchmarks were updated 2026-04-01 to include the 6th dimension (Operational Monitoring). Reviews conducted before this date used a 5-dimension framework. When comparing across framework versions, note the dimension count difference.
