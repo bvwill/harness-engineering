@@ -11,7 +11,7 @@
 
 **Date:** 2026-03-10
 **Maturity Level:** Level 3 — Systematic
-**Overall Score:** 4.4/5
+**Overall Score:** 4.2/5
 
 ---
 
@@ -24,6 +24,7 @@
 | Entropy Management | 4/5 | Automated consistency checks on commit, background drift detection, scheduled cleanup tasks | Staleness ratio tracking is implicit rather than metric-driven. No dashboard for entropy trends. |
 | Verification & Feedback | 5/5 | Multi-layer verification (self-check + peer + automated), eval frameworks with golden datasets, continuous learning loops with closed-loop evidence | Eval framework coverage is uneven across all 65+ skills |
 | Agent Ergonomics | 5/5 | 16+ subagents with clear role differentiation, parallel execution, isolated failure recovery, agent-to-agent handoff patterns | Onboarding new agent types requires significant setup |
+| Operational Monitoring | 3/5 | Structured logging of agent runs, quality metrics tracked over time, quality dashboards show skill output trends | No automated drift detection or anomaly alerting. No per-operation cost/latency tracking. Production-to-prompt loop is manual. |
 
 ### Sub-Scores (Tier 2+ Detail)
 
@@ -60,6 +61,13 @@
 | Skill Modularity | 3/3 — Skills are fully composable. Pipelines call sub-skills. Clear input/output contracts between all stages. |
 | Entry Points | 3/3 — Comprehensive slash command coverage for all common workflows with documented arguments. |
 | Human-in-the-Loop | 3/3 — Explicit checkpoints at all critical decision points. Nothing posts or modifies external systems without approval. |
+
+**Operational Monitoring:**
+| Sub-dimension | Score |
+|---------------|-------|
+| Output Quality Tracking | 3/3 — Quality metrics tracked with visible trends. Performance dashboards show skill output quality over time. |
+| Alerting | 1/3 — No automated alerting on quality degradation. Quality issues are detected during manual review. |
+| Cost/Latency Awareness | 1/3 — No per-operation cost or latency tracking. API costs monitored at account level only. |
 
 ---
 
@@ -169,7 +177,8 @@ This project defines the Tier 3 benchmark for multi-agent coordination. The only
 | Entropy Management | 4/5 | 4/5 (self) | 0 |
 | Verification & Feedback | 5/5 | 5/5 (self) | 0 |
 | Agent Ergonomics | 5/5 | 5/5 (self) | 0 |
-| **Overall** | **4.4/5** | **4.2+/5** | **+0.2** |
+| Operational Monitoring | 3/5 | 3/5 (self) | 0 |
+| **Overall** | **4.2/5** | **4.0+/5** | **+0.2** |
 
 Note: This project IS the Tier 3 reference benchmark. Scores are self-referential. Future reviews of other projects should compare against these scores for calibration.
 

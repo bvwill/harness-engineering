@@ -8,6 +8,18 @@ Score each dimension using the tier-appropriate criteria below. Every score must
 - No dimension can score 5 unless the evaluator can demonstrate it working (not just existing)
 - If more than 2 dimensions score 4+, re-verify each against the reference benchmarks before proceeding
 
+## Severity Classification
+
+Every finding within a dimension should be tagged with a severity level. Severity determines improvement priority — a critical finding in a low-weight dimension outranks a minor finding in a high-weight dimension.
+
+| Severity | Definition | Examples |
+|----------|-----------|----------|
+| **Critical** | Creates security risk or makes the harness fundamentally unreliable. If not addressed, agent output cannot be trusted. | Missing secret scanning with credentials at risk of exposure. Validation script exists but silently passes on all input. Agent instructions reference files that don't exist, causing hallucinated output. No .gitignore for .env files. |
+| **Major** | Significantly degrades harness effectiveness. The system works but with known reliability gaps. | Validation scripts exist but never run automatically. Feedback loop designed but zero feedback captured. Output format spec exists but no enforcement. Context files >60 days stale while code has changed significantly. |
+| **Minor** | Polish items that improve maturity but whose absence does not cause failures. | Missing dawn/dusk prompt variants. Thin supporting context on low-use skills. No staleness dashboard. Slash commands lack argument documentation. |
+
+When listing findings in a review, tag each as `[critical]`, `[major]`, or `[minor]`. Improvements in the plan must be ordered: all critical findings before major, all major before minor.
+
 ---
 
 ## Dimension 1: Context Engineering (weight: high)
@@ -225,6 +237,51 @@ All Tier 2 criteria apply. Additionally evaluate:
 - **Multi-agent coordination:** Can agents work in parallel? Are agent roles clearly differentiated? Is context scoped per agent?
 - **Failure recovery:** Does failure in one pipeline stage cascade to other stages, or is it isolated? Are there explicit recovery paths?
 - **Agent-to-agent communication:** Can agents hand off work to each other? Is there a coordination pattern (team, queue, event)?
+
+---
+
+## Dimension 6: Operational Monitoring (weight: medium)
+
+### Tier 1 Criteria
+
+| Score | Requirements | Evidence Needed |
+|-------|-------------|----------------|
+| 1 | No logging or monitoring of agent output quality. Output is produced and consumed with no observability. | Confirmed absence of logging config, monitoring scripts, or quality tracking files |
+| 2 | Basic logging exists — agent outputs are saved to predictable locations — but no structured quality tracking or alerting. | Output directory path + evidence that outputs are persisted |
+| 3 | At least one quality signal is tracked over time (e.g., output acceptance rate, error frequency, user correction rate, engagement metrics). Tracking is structured, not ad-hoc notes. | Quality tracking file path + evidence of actual data (not just a template) |
+
+### Tier 2 Criteria (adds sub-scores)
+
+All Tier 1 criteria apply. Additionally:
+
+**Sub-score: Output Quality Tracking**
+| Score | Requirements |
+|-------|-------------|
+| 1 | No structured tracking of output quality over time |
+| 2 | Some quality signals tracked (acceptance rate, error logs) but not systematically |
+| 3 | Quality metrics tracked with visible trends. Performance dashboards or logs show quality over time with enough data to detect patterns. |
+
+**Sub-score: Alerting**
+| Score | Requirements |
+|-------|-------------|
+| 1 | No alerting on output quality or system health |
+| 2 | Manual review cadence exists (e.g., weekly spot-checks) but no automated alerts |
+| 3 | Automated alerts fire when quality signals cross thresholds or agent errors spike. Team is notified without needing to check manually. |
+
+**Sub-score: Cost/Latency Awareness**
+| Score | Requirements |
+|-------|-------------|
+| 1 | No tracking of agent cost, token usage, or execution time |
+| 2 | Some awareness of cost (e.g., API billing dashboard) but not connected to specific agent operations |
+| 3 | Per-operation cost and latency tracked. Anomalous runs (high cost, slow execution) are visible and can trigger investigation. |
+
+### Tier 3 Criteria (adds depth)
+
+All Tier 2 criteria apply. Additionally evaluate:
+
+- **Automated quality scoring:** Are agent outputs scored automatically against quality criteria (not just format validation)?
+- **Drift detection:** Does the system detect when output quality degrades over time, even if individual outputs pass validation?
+- **Closed-loop from production:** Do production signals (quality scores, error rates, user corrections) flow back into prompt refinement or harness configuration?
 
 ---
 

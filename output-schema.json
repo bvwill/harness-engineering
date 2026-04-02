@@ -1,0 +1,164 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Harness Engineering Review Scorecard",
+  "description": "Structured output format for harness engineering reviews. Emitted alongside the markdown narrative for machine-readable score tracking.",
+  "type": "object",
+  "required": ["project_name", "date", "tier", "overall_score", "dimensions", "improvements", "meta"],
+  "properties": {
+    "project_name": {
+      "type": "string",
+      "description": "Name of the reviewed project"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Review date in YYYY-MM-DD format"
+    },
+    "tier": {
+      "type": "integer",
+      "enum": [1, 2, 3],
+      "description": "Assigned maturity tier"
+    },
+    "tier_override": {
+      "type": "boolean",
+      "default": false,
+      "description": "True if the user overrode the detected tier with --tier"
+    },
+    "overall_score": {
+      "type": "number",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "Weighted overall score across all dimensions"
+    },
+    "dimensions": {
+      "type": "array",
+      "description": "Scores for each evaluation dimension",
+      "items": {
+        "type": "object",
+        "required": ["name", "score", "weight", "evidence", "gaps"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "enum": [
+              "Context Engineering",
+              "Architectural Constraints",
+              "Entropy Management",
+              "Verification & Feedback",
+              "Agent Ergonomics",
+              "Operational Monitoring"
+            ]
+          },
+          "score": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 5
+          },
+          "weight": {
+            "type": "string",
+            "enum": ["high", "medium"]
+          },
+          "evidence": {
+            "type": "string",
+            "description": "Key strength or evidence supporting the score"
+          },
+          "gaps": {
+            "type": "string",
+            "description": "Key gap identified for this dimension"
+          },
+          "severity_findings": {
+            "type": "array",
+            "description": "Individual findings tagged by severity",
+            "items": {
+              "type": "object",
+              "required": ["finding", "severity"],
+              "properties": {
+                "finding": {
+                  "type": "string"
+                },
+                "severity": {
+                  "type": "string",
+                  "enum": ["critical", "major", "minor"]
+                }
+              }
+            }
+          },
+          "sub_scores": {
+            "type": "object",
+            "description": "Sub-dimension scores (Tier 2+ only). Keys are sub-dimension names, values are scores.",
+            "additionalProperties": {
+              "type": "object",
+              "required": ["score", "max_score"],
+              "properties": {
+                "score": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 3
+                },
+                "max_score": {
+                  "type": "integer",
+                  "enum": [3]
+                },
+                "note": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "improvements": {
+      "type": "array",
+      "description": "Prioritized improvement plan, ordered by severity then impact",
+      "items": {
+        "type": "object",
+        "required": ["dimension", "severity", "current_state", "target_state", "why_it_matters", "first_step", "effort"],
+        "properties": {
+          "dimension": {
+            "type": "string"
+          },
+          "severity": {
+            "type": "string",
+            "enum": ["critical", "major", "minor"]
+          },
+          "current_state": {
+            "type": "string"
+          },
+          "target_state": {
+            "type": "string"
+          },
+          "why_it_matters": {
+            "type": "string"
+          },
+          "first_step": {
+            "type": "string"
+          },
+          "effort": {
+            "type": "string",
+            "enum": ["quick-win", "medium", "significant"]
+          }
+        }
+      }
+    },
+    "meta": {
+      "type": "object",
+      "required": ["framework_version", "dimension_count"],
+      "properties": {
+        "framework_version": {
+          "type": "string",
+          "description": "Framework version identifier (e.g., '2.0' for 6-dimension framework)",
+          "const": "2.0"
+        },
+        "dimension_count": {
+          "type": "integer",
+          "description": "Number of dimensions scored",
+          "const": 6
+        },
+        "previous_review": {
+          "type": "string",
+          "description": "Path to previous review if --compare was used"
+        }
+      }
+    }
+  }
+}

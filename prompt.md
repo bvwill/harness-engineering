@@ -10,7 +10,7 @@ This skill adapts its evaluation depth to the project's maturity. A solo side pr
 
 ## Step 1: Discovery
 
-Run the full 15-point discovery checklist from `discovery-checklist.md`. Do NOT skip checks. Record findings for each item before proceeding.
+Run the full 16-point discovery checklist from `discovery-checklist.md`. Do NOT skip checks. Record findings for each item before proceeding.
 
 Do NOT ask the user to explain their project. Discover it yourself by reading the repo. Only ask clarifying questions if something is genuinely ambiguous after reading.
 
@@ -32,15 +32,16 @@ If the user specified `--tier`, use their override instead.
 
 ## Step 3: Score Each Dimension
 
-Score all 5 dimensions using the tier-appropriate criteria in `rubric.md`. The rubric is the authority. If the rubric says score 2 and your instinct says 3, trust the rubric.
+Score all 6 dimensions using the tier-appropriate criteria in `rubric.md`. The rubric is the authority. If the rubric says score 2 and your instinct says 3, trust the rubric.
 
-### The 5 Dimensions
+### The 6 Dimensions
 
 1. **Context Engineering** (weight: high) — Does the agent have access to everything it needs?
 2. **Architectural Constraints** (weight: high) — Does the system prevent bad output mechanically?
 3. **Entropy Management** (weight: medium) — Does the system self-correct over time?
 4. **Verification & Feedback** (weight: high) — Does output quality compound through feedback loops?
 5. **Agent Ergonomics** (weight: medium) — Is the system designed for agents to succeed?
+6. **Operational Monitoring** (weight: medium) — Can the team detect when agent output quality degrades?
 
 For each dimension:
 1. List specific evidence found (files, patterns, practices)
@@ -98,7 +99,7 @@ Use the tier-appropriate output format below. Reference `examples/tier-{1,2,3}-r
 
 ## Top 3 Improvements
 
-{3 improvements, each with: current state, target state, why it matters, first step, effort tag}
+{3 improvements, each with: severity, current state, target state, why it matters, first step, effort tag}
 
 ## What to Focus on to Reach Tier 2
 
@@ -131,7 +132,7 @@ Use the tier-appropriate output format below. Reference `examples/tier-{1,2,3}-r
 
 ## Improvement Plan
 
-{5 improvements with: dimension, current state, target state, why it matters, first step, effort tag}
+{5 improvements with: dimension, severity, current state, target state, why it matters, first step, effort tag}
 
 ## What to Focus on to Reach Tier 3
 
@@ -206,7 +207,11 @@ Remaining from previous improvement plan:
 
 ## Step 7: Auto-Save
 
-Always save the review to `docs/plans/{today's date}-harness-review.md`. If a file already exists at that path, append a suffix (e.g., `-v2`).
+Save two files:
+1. **Markdown review:** `docs/plans/{today's date}-harness-review.md` — the full narrative review.
+2. **JSON scorecard:** `docs/plans/{today's date}-harness-review.json` — structured scorecard following `output-schema.json`. Include all dimension scores, sub-scores (Tier 2+), severity findings, and the improvement plan.
+
+If a file already exists at either path, append a suffix (e.g., `-v2`).
 
 ---
 
@@ -214,6 +219,7 @@ Always save the review to `docs/plans/{today's date}-harness-review.md`. If a fi
 
 Every improvement must include these fields:
 - **Dimension** it addresses
+- **Severity** — critical / major / minor (see `rubric.md` Severity Classification)
 - **Current state** — what exists now (cite files)
 - **Target state** — what it should look like
 - **Why it matters** — consequence of not fixing. Connect to what breaks, not just what's missing. Example: "At your current commit frequency, that's roughly X unvalidated changes per week."
@@ -227,8 +233,9 @@ Every improvement must include these fields:
 | File | Purpose |
 |------|---------|
 | `rubric.md` | Scoring criteria — the authority on what each score means |
-| `discovery-checklist.md` | 15-point structured discovery process |
-| `reference-benchmarks.md` | Calibration: bv-workdesk (Tier 2, 3.6/5), everything-claude-code (Tier 3, 4.2+/5) |
+| `discovery-checklist.md` | 16-point structured discovery process |
+| `reference-benchmarks.md` | Calibration: bv-workdesk (Tier 2, 3.3/5), everything-claude-code (Tier 3, 4.0+/5) |
+| `output-schema.json` | JSON Schema for structured scorecard output |
 | `self-verification.md` | Pre-presentation checklist with anti-inflation guardrails |
 | `examples/tier-1-review.md` | Example: compact Tier 1 output |
 | `examples/tier-2-review.md` | Example: standard Tier 2 output (bv-workdesk) |
@@ -241,7 +248,7 @@ Every improvement must include these fields:
 - **Be honest, not generous.** A 3/5 is good. Most projects start at 2. Inflated scores undermine the skill's value.
 - **The rubric is the authority.** If the rubric says score 2 and your instinct says 3, trust the rubric.
 - **Reference specific files.** Don't say "documentation could be better" — say "CLAUDE.md lists Phase 3 as Planned but `src/briefing/` has been implemented."
-- **Prioritize ruthlessly.** The user doesn't need 15 suggestions. They need the 3-5 that matter most right now.
+- **Prioritize by severity, then impact.** Critical findings before major, major before minor. The user doesn't need 15 suggestions. They need the 3-5 that matter most right now.
 - **Credit what exists.** Many projects have harness components they don't recognize as such. Name them.
 - **Make it actionable.** Every gap should have a concrete first step, not "consider improving documentation."
 - **Connect gaps to consequences.** "What breaks without it" is more compelling than "best practice says."

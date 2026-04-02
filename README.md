@@ -1,6 +1,6 @@
 # Harness Engineering
 
-A Claude Code skill that scores your AI-built project on the five things that determine whether it works reliably or needs you babysitting every output.
+A Claude Code skill that scores your AI-built project on the six things that determine whether it works reliably or needs you babysitting every output.
 
 ## The Problem
 
@@ -18,7 +18,7 @@ If you've ever thought "this works when I run it but breaks when anyone else doe
 
 ## How It Works
 
-Run the skill against any project. It reads your repo (agent instructions, prompts, validation scripts, feedback artifacts, output directories) and scores it across 5 dimensions of harness maturity. You get a scorecard, specific strengths and gaps, and a prioritized improvement plan.
+Run the skill against any project. It reads your repo (agent instructions, prompts, validation scripts, feedback artifacts, output directories, monitoring config) and scores it across 6 dimensions of harness maturity. You get a scorecard, specific strengths and gaps, and a prioritized improvement plan.
 
 The skill does its own discovery. It reads your files, maps your structure, and identifies what you have and what's missing. You don't need to explain your project.
 
@@ -37,7 +37,7 @@ The skill does its own discovery. It reads your files, maps your structure, and 
 
 Run it from the root of any project. The skill will read your repo and produce a scored maturity assessment.
 
-## The 5 Dimensions
+## The 6 Dimensions
 
 ### 1. Context Engineering (high weight)
 
@@ -69,6 +69,12 @@ Is the system designed for the AI to succeed? Is work decomposed well?
 
 A single 500-line prompt that handles everything is fragile. Decomposed pipelines with focused skills, clear handoffs, and human-in-the-loop checkpoints are resilient. This dimension measures whether you've designed the work in a way that plays to the model's strengths.
 
+### 6. Operational Monitoring (medium weight)
+
+Can you detect when agent output quality degrades in production?
+
+Most PM-built tools have no observability. Output gets produced and consumed, and nobody knows if quality is slipping until a user complains. Good monitoring means you're tracking quality signals over time. Great monitoring means you have alerts that fire when quality degrades and production data that flows back into improving the harness.
+
 ## Scoring
 
 Each dimension is scored 1-5. Most projects score 2-3 on first review. That's normal.
@@ -94,9 +100,10 @@ Most projects score Tier 1 or 2 on first review. That is normal and useful. The 
 ```
 prompt.md                      # Skill prompt (the evaluator instructions)
 rubric.md                      # Scoring criteria — the authority on what each score means
-discovery-checklist.md         # 15-point structured discovery process
+discovery-checklist.md         # 16-point structured discovery process
 reference-benchmarks.md        # Calibration benchmarks for scoring consistency
 self-verification.md           # Pre-presentation checklist with anti-inflation guardrails
+output-schema.json             # JSON Schema for structured scorecard output
 examples/
   tier-1-review.md             # Example: compact Foundations review
   tier-2-review.md             # Example: standard Team-ready review
@@ -108,17 +115,18 @@ README.md                      # This file
 
 Harness maturity isn't binary. A project can have excellent context engineering but no validation. A scorecard shows you exactly where to invest your next hour of improvement, rather than just telling you "needs work."
 
-## Why These 5 Dimensions
+## Why These 6 Dimensions
 
-They map to the five ways AI-built tools break in practice:
+They map to the six ways AI-built tools break in practice:
 
 1. **Context** breaks when the agent doesn't know what you know
 2. **Constraints** break when nothing enforces output quality mechanically
 3. **Entropy** breaks when your docs and code drift apart over weeks
 4. **Verification** breaks when there's no feedback loop improving quality over time
 5. **Ergonomics** break when the task is too big or too tangled for the agent to handle cleanly
+6. **Monitoring** breaks when nobody knows the agent is producing bad output in production
 
-Fix them in roughly that order. Context and constraints are the highest leverage. Entropy and ergonomics matter more as the project matures.
+Fix them in roughly that order. Context and constraints are the highest leverage. Entropy, ergonomics, and monitoring matter more as the project matures.
 
 ## The Philosophy
 
