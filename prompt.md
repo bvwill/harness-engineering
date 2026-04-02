@@ -12,6 +12,8 @@ This skill adapts its evaluation depth to the project's maturity. A solo side pr
 
 Run the full 16-point discovery checklist from `discovery-checklist.md`. Do NOT skip checks. Record findings for each item before proceeding.
 
+If `harness-check.sh` is available in the skill directory, run it first against the target repo to pre-populate objective findings for checks 1, 3, 4, 5, 6, 12, 14, and 16. Use its output as a starting point, then complete the remaining subjective checks manually.
+
 Do NOT ask the user to explain their project. Discover it yourself by reading the repo. Only ask clarifying questions if something is genuinely ambiguous after reading.
 
 ---

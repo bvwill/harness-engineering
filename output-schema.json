@@ -22,7 +22,7 @@
     "tier_override": {
       "type": "boolean",
       "default": false,
-      "description": "True if the user overrode the detected tier with --tier"
+      "description": "True if the user overrode the detected tier with --tier. Defaults to false when absent (JSON Schema 'default' is annotation-only and not enforced)."
     },
     "overall_score": {
       "type": "number",
