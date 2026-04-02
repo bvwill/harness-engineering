@@ -95,6 +95,20 @@ The skill adapts its depth to your project's maturity:
 
 Most projects score Tier 1 or 2 on first review. That is normal and useful. The value is in the specific gaps and the prioritized fix list, not the number.
 
+## Automated Checks
+
+`harness-check.sh` validates the objective, automatable subset of the 16-point discovery checklist. It covers 8 of 16 checks (the ones that can be answered by looking at file existence and structure rather than evaluating quality).
+
+```bash
+bash harness-check.sh                  # Run against current directory
+bash harness-check.sh /path/to/repo    # Run against a specific repo
+bash harness-check.sh --json           # JSON output only
+```
+
+The script produces both human-readable output and a JSON report. When used with the `/harness-review` skill, the evaluator runs it first to pre-populate objective findings, then completes the subjective checks manually.
+
+No dependencies beyond `bash`, `git`, and standard unix tools.
+
 ## Repo Structure
 
 ```
@@ -104,6 +118,7 @@ discovery-checklist.md         # 16-point structured discovery process
 reference-benchmarks.md        # Calibration benchmarks for scoring consistency
 self-verification.md           # Pre-presentation checklist with anti-inflation guardrails
 output-schema.json             # JSON Schema for structured scorecard output
+harness-check.sh               # Automated objective validation script
 examples/
   tier-1-review.md             # Example: compact Foundations review
   tier-2-review.md             # Example: standard Team-ready review
