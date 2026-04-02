@@ -4,7 +4,7 @@ Run through each check in order. Record what you find. This standardizes discove
 
 ## How to Use
 
-For each check: record Found/Not Found, the file path or location, and a one-line quality note. Complete all 15 checks before assigning a tier or scoring any dimension.
+For each check: record Found/Not Found, the file path or location, and a one-line quality note. Complete all 16 checks before assigning a tier or scoring any dimension.
 
 ---
 
@@ -85,16 +85,21 @@ For each check: record Found/Not Found, the file path or location, and a one-lin
 **Record:** Number of contributors, frequency of commits, whether commits show agent-generated patterns (e.g., "Co-Authored-By: Claude")
 **Quality signals:** How active is the repo? Is there evidence of multi-contributor workflows?
 
+### 16. Production Monitoring and Observability
+**Look for:** Logging config, monitoring dashboards, alerting rules, quality tracking scripts or logs, output acceptance/rejection records, cost/token tracking, error rate tracking, performance metrics files
+**Record:** What monitoring exists, what quality signals are tracked, whether alerts are configured, whether production data flows back into the harness
+**Quality signals:** Can the team detect when agent output quality degrades without manual spot-checking? Is there a feedback path from production metrics back to prompt refinement?
+
 ---
 
 ## Tier Assignment
 
-After completing all 15 checks, count the signals:
+After completing all 16 checks, count the signals:
 
 **Tier 1 (Foundations):** Checks 1-2 show sparse or no agent configuration. Few or no skills. No automated enforcement. Solo contributor.
 
-**Tier 2 (Team-ready):** Comprehensive agent instructions (check 1). Validation scripts exist (check 6). Multiple skills with some supporting context (check 5). Some feedback mechanisms (check 9).
+**Tier 2 (Team-ready):** Comprehensive agent instructions (check 1). Validation scripts exist (check 6). Multiple skills with some supporting context (check 5). Some feedback mechanisms (check 9). Some production logging or quality tracking (check 16).
 
-**Tier 3 (Systematic):** Layered agent context (check 1). Automated enforcement via hooks/CI (checks 3-4). 5+ skills with rubrics/examples (check 5). Feedback captured and synthesized (check 9). Multi-agent patterns visible (check 15).
+**Tier 3 (Systematic):** Layered agent context (check 1). Automated enforcement via hooks/CI (checks 3-4). 5+ skills with rubrics/examples (check 5). Feedback captured and synthesized (check 9). Multi-agent patterns visible (check 15). Automated quality monitoring with drift detection (check 16).
 
 State: "This project presents as Tier X. I will evaluate at that depth. Override with --tier if you want a different level."

@@ -11,7 +11,7 @@
 
 **Date:** 2026-03-10
 **Maturity Level:** Level 1 — Foundations
-**Overall Score:** 1.6/5
+**Overall Score:** 1.5/5
 
 ---
 
@@ -24,6 +24,7 @@
 | Entropy Management | 1/5 | No consistency checks. `CLAUDE.md` references a `docs/` directory that does not exist |
 | Verification & Feedback | 2/5 | Human reviews output manually before use. No structured feedback capture. `tests/test_tasks.py` has 3 unit tests but no coverage config |
 | Agent Ergonomics | 2/5 | `src/` has some decomposition (cli.py, tasks.py, storage.py) but no pipeline structure, no skills, no slash commands |
+| Operational Monitoring | 1/5 | No logging or quality tracking of task output. Output is consumed directly with no observability. |
 
 ---
 

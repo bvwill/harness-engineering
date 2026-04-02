@@ -11,7 +11,7 @@
 
 **Date:** 2026-03-10
 **Maturity Level:** Level 2 (bordering Level 3) — Team-ready
-**Overall Score:** 3.6/5
+**Overall Score:** 3.3/5
 
 ---
 
@@ -24,6 +24,7 @@
 | Entropy Management | 3/5 | `validate-docs.sh` checks CLAUDE.md path references against disk, `validate-content.sh` checks spec conformance | Scripts are manual-run only. No git hooks installed (`.git/hooks/` has only samples). No scheduled cleanup. CLAUDE.md had drifted significantly before today's update. |
 | Verification & Feedback | 4/5 | Self-verification checklists on all 4 coaching skills, `content/feedback/TEMPLATE.md` for structured post feedback, `performance-log.md` with breakout formula derived from data, `synthesize-feedback.md` pipeline to close the loop | Feedback directory has only the template — no actual feedback reports filed yet. Synthesis pipeline exists but has never run. Loop is designed but not yet closed. |
 | Agent Ergonomics | 4/5 | 12 slash commands, pipeline decomposed into 10+ single-purpose prompt files, skills are composable (validate calls pm-research sub-skills), clear human-in-the-loop checkpoints | No parallel agent execution. No explicit failure recovery paths in pipeline prompts. Brain hooks scaffolded but not active. |
+| Operational Monitoring | 2/5 | Agent outputs saved to predictable locations (`reviews/`, `content/drafts/`). `performance-log.md` tracks content engagement. | No automated quality tracking or alerting. No cost/token monitoring. Quality assessment is manual spot-checking. |
 
 ---
 

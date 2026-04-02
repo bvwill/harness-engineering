@@ -14,12 +14,20 @@ Run this checklist BEFORE presenting the review to the user. Every item must pas
 ## Anti-Inflation Check
 
 - [ ] If more than 2 dimensions score 4+, re-read each justification against the rubric criteria. Are you being generous? Most projects score 2-3 on first review.
-- [ ] Compare overall score against the reference benchmarks. Is it plausible that this project is more mature than bv-workdesk (3.6/5)?
+- [ ] Compare overall score against the reference benchmarks. Is it plausible that this project is more mature than bv-workdesk (3.3/5)?
 - [ ] No dimension scored 5 unless you can demonstrate the feature working, not just existing.
+- [ ] If Operational Monitoring scores 3+, verify the team can demonstrate a quality signal being tracked with actual data. Existence of logging config alone does not qualify.
+
+## Severity Checks
+
+- [ ] Every finding is tagged with a severity level: critical, major, or minor
+- [ ] Every critical finding appears in the improvement plan
+- [ ] No minor finding is listed above a critical or major finding in the improvement plan
+- [ ] Every improvement includes a Severity field
 
 ## Completeness Checks
 
-- [ ] All 15 discovery checklist items were checked (not skipped)
+- [ ] All 16 discovery checklist items were checked (not skipped)
 - [ ] The tier assignment was stated and justified before scoring began
 - [ ] "What's Working Well" section credits at least 2 specific strengths with file references
 - [ ] Every improvement in the plan has all required fields: dimension, current state, target state, why it matters, first step, effort tag
@@ -41,6 +49,7 @@ Run this checklist BEFORE presenting the review to the user. Every item must pas
 
 ## Format Check
 
+- [ ] JSON scorecard was emitted alongside the markdown review and follows `output-schema.json`
 - [ ] Report follows the tier-appropriate output format (Tier 1: ~1 page, Tier 2: ~2-3 pages, Tier 3: ~4-5 pages)
 - [ ] Scorecard table is complete with all dimensions
 - [ ] Sub-scores are included for Tier 2+ reviews

@@ -6,9 +6,9 @@ Use these benchmarks to calibrate your scoring. When in doubt about a score, ask
 
 ## Tier 2 Benchmark: bv-workdesk
 
-**Overall Score:** 3.6/5
+**Overall Score:** 3.3/5
 **Maturity Level:** Level 2 (bordering Level 3) — Team-ready
-**Review date:** 2026-03-10
+**Review date:** 2026-03-10 (updated 2026-04-01 for 6-dimension framework)
 **Full review:** `docs/plans/2026-03-10-harness-review.md`
 
 ### What Makes It Tier 2
@@ -42,6 +42,11 @@ Use these benchmarks to calibrate your scoring. When in doubt about a score, ask
 - Clear human-in-the-loop checkpoints (nothing posts without approval)
 - Gap: no parallel agent execution. No explicit failure recovery paths. Brain hooks scaffolded but not active.
 
+**Operational Monitoring (2/5):**
+- Agent outputs saved to predictable locations (`reviews/YYYY-MM-DD/`, `content/drafts/`)
+- `performance-log.md` tracks content engagement metrics over time
+- Gap: no automated quality tracking or alerting. No cost/token monitoring. Quality assessment is manual spot-checking. No production signals flow back into prompt refinement.
+
 ### Use This Benchmark When
 
 A project has comprehensive documentation, multiple skills, validation scripts, and feedback mechanisms designed but not yet fully closed. This is the "infrastructure is built, loops need closing" stage.
@@ -50,9 +55,9 @@ A project has comprehensive documentation, multiple skills, validation scripts, 
 
 ## Tier 3 Benchmark: everything-claude-code
 
-**Estimated Score:** 4.2+/5
+**Estimated Score:** 4.0+/5
 **Maturity Level:** Level 3 — Systematic
-**Source:** github.com/affaan-m/everything-claude-code (analyzed 2026-03-10)
+**Source:** github.com/affaan-m/everything-claude-code (analyzed 2026-03-10, updated 2026-04-01 for 6-dimension framework)
 
 ### What Makes It Tier 3
 
@@ -86,6 +91,11 @@ A project has comprehensive documentation, multiple skills, validation scripts, 
 - Agent-to-agent communication and handoff patterns
 - Composable skill architecture with clear input/output contracts
 
+**Operational Monitoring (3/5):**
+- Structured logging of agent runs with quality metrics tracked over time
+- Quality dashboards show skill output quality trends
+- Gap: no automated drift detection or anomaly alerting. No per-operation cost/latency tracking. Production signals inform manual prompt refinement but the loop is not automated.
+
 ### Use This Benchmark When
 
 A project has automated enforcement, multi-agent coordination, continuous feedback loops, and evidence that the system improves itself over time. This is the "self-correcting system" stage. Very few projects reach this level.
@@ -98,8 +108,10 @@ A project has automated enforcement, multi-agent coordination, continuous feedba
 |---------------------|---------------|------------|
 | 1.0-1.5 | Minimal harness. Agent instructions barely exist. | Very common for new projects |
 | 1.5-2.5 | Basic harness. Docs exist but no enforcement. | Common for early-stage teams |
-| 2.5-3.5 | Solid harness. Docs + validation + some feedback. Team-ready. | Uncommon. bv-workdesk sits here. |
-| 3.5-4.5 | Strong harness. Automated enforcement + closed feedback loops. | Rare. everything-claude-code sits here. |
+| 2.5-3.5 | Solid harness. Docs + validation + some feedback. Team-ready. | Uncommon. bv-workdesk sits here (3.3). |
+| 3.5-4.5 | Strong harness. Automated enforcement + closed feedback loops. | Rare. everything-claude-code sits here (4.0+). |
 | 4.5-5.0 | Exceptional harness. Self-correcting, multi-agent, fully instrumented. | Very rare. Reserve for systems that demonstrably improve themselves. |
 
 If a project you are reviewing scores above 3.5, verify each 4+ dimension against these benchmarks. If it scores above 4.5, something may be wrong with your evaluation.
+
+> **Framework version note:** Benchmarks were updated 2026-04-01 to include the 6th dimension (Operational Monitoring). Reviews conducted before this date used a 5-dimension framework. When comparing across framework versions, note the dimension count difference.
